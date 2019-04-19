@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import elCascaderMulti from "el-cascader-multi";
+Vue.use(elCascaderMulti);
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
