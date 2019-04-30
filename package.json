@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
-    "el-cascader-multi": "^1.0.8",
+    "el-cascader-multi": "^1.1.4",
     "element-ui": "^2.7.2",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",

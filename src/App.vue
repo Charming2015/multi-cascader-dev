@@ -1,27 +1,60 @@
 <template>
   <div id="app">
-    <!-- <multi-cascader
+    <multi-cascader
       class="multi-cascader-style"
       v-model="checkList"
       :data="options"
-      :onlyLast="false"
-    ></multi-cascader> -->
-    <el-cascader-multi v-model="checkList" :data="options" :only-last="true">
-    </el-cascader-multi>
+      :onlyLast="onlyLast"
+      @change="change"
+      clearable
+      expand-trigger="hover"
+    ></multi-cascader>
+    <!-- <el-cascader-multi
+      v-model="checkList"
+      :data="options"
+      :only-last="onlyLast"
+    >
+    </el-cascader-multi> -->
+    <button @click="addValue">addValue</button>
   </div>
 </template>
 
 <script>
-// import multiCascader from './components/multi-cascader/multi-cascader.vue'
+import multiCascader from './components/multi-cascader/multi-cascader.vue'
 export default {
   name: 'app',
   components: {
-    // multiCascader
+    multiCascader
+  },
+  watch: {
+    checkList: {
+      deep: true,
+      handler (v) {
+        // console.log(v)
+      }
+    }
   },
   data () {
     return {
-      checkList: [],
-      options: [{
+      onlyLast: false,
+      config: [
+        {
+          name: '',
+          desc: '',
+          type: 'el-switch',
+          value: false
+        }
+      ],
+      checkList: [
+        ['zhinan', 'shejiyuanze', 'yizhi'],
+        ['zhinan', 'shejiyuanze', 'fankui'],
+        ['zhinan', 'shejiyuanze', 'xiaolv'],
+        ['zhinan', 'shejiyuanze', 'kekong'],
+        ['zhinan', 'daohang', 'cexiangdaohang'],
+      ],
+      checkList2: ['yizhi', 'fankui'],
+      options: [
+        {
           value: 'zhinan',
           label: '指南',
           children: [{
@@ -64,7 +97,17 @@ export default {
             value: 'jiaohu',
             label: '组件交互文档'
           }]
-        }]
+        }
+      ]
+    }
+  },
+  methods: {
+    addValue () {
+      this.checkList.push(
+        ['zhinan', 'daohang', 'dingbudaohang'])
+    },
+    change (v) {
+      console.log(v)
     }
   }
 }
