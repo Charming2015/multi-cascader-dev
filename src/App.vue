@@ -2,20 +2,17 @@
   <div id="app">
     <multi-cascader
       class="multi-cascader-style"
-      v-model="checkList"
+      style="width:300px;"
+      v-model="checkListEmpty"
       :data="options"
-      :onlyLast="onlyLast"
       @change="change"
       clearable
       expand-trigger="hover"
     ></multi-cascader>
-    <!-- <el-cascader-multi
-      v-model="checkList"
-      :data="options"
-      :only-last="onlyLast"
-    >
-    </el-cascader-multi> -->
+    <!-- <el-cascader-multi v-model="checkList" :data="options" :only-last="onlyLast"></el-cascader-multi> -->
+    <!-- <el-cascader-multi v-model="ruleAlarm.test" :data="resourceOption.data" only-last></el-cascader-multi> -->
     <button @click="addValue">addValue</button>
+    
   </div>
 </template>
 
@@ -36,6 +33,50 @@ export default {
   },
   data () {
     return {
+      ruleAlarm: {
+        nodeIdArray:[]
+      },
+      resourceOption: {
+        "errno": 0,
+        "data": [
+          {
+          "id": 14,
+          "label": "广西组",
+          "value": "14",
+          "children": [
+          {
+          "id": "14,15",
+          "currentId": 15,
+          "value": "15",
+          "label": "A组",
+          "children": [
+          {
+          "id": "14,15,26",
+          "currentId": 26,
+          "value": "26",
+          "label": "inpb_system_01"
+          }
+          ]
+          },
+          {
+          "id": "14,17",
+          "currentId": 17,
+          "value": "17",
+          "label": "上海组",
+          "children": [
+          {
+          "id": "14,17,27",
+          "currentId": 27,
+          "value": "27",
+          "label": "inpb_system_02"
+          }
+          ]
+          }
+          ]
+          }
+        ],
+        "errmsg": "成功"
+      },
       onlyLast: false,
       config: [
         {
@@ -45,6 +86,7 @@ export default {
           value: false
         }
       ],
+      checkListEmpty: [['zhinan', 'shejiyuanze', 'yizhi']],
       checkList: [
         ['zhinan', 'shejiyuanze', 'yizhi'],
         ['zhinan', 'shejiyuanze', 'fankui'],
@@ -103,8 +145,7 @@ export default {
   },
   methods: {
     addValue () {
-      this.checkList.push(
-        ['zhinan', 'daohang', 'dingbudaohang'])
+      this.checkListEmpty = [['zhinan', 'daohang', 'dingbudaohang']]
     },
     change (v) {
       console.log(v)
@@ -114,5 +155,4 @@ export default {
 </script>
 
 <style lang="scss">
-
 </style>
